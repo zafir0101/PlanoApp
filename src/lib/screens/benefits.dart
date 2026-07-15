@@ -20,13 +20,12 @@ class BenefitsScreen extends StatelessWidget {
           child: ListView(
             padding: const EdgeInsets.fromLTRB(20, 16, 20, 120),
             children: [
-              const Text('Benefícios',
-                  style:
-                      TextStyle(fontSize: 22, fontWeight: FontWeight.w700)),
+              const Text('Benefícios', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700)),
               const SizedBox(height: 4),
-              const Text('Vantagens exclusivas para quem usa o Plano.',
-                  style: TextStyle(
-                      fontSize: 13.5, color: PlanoColors.textSecondary)),
+              const Text(
+                'Vantagens exclusivas para quem usa o Plano.',
+                style: TextStyle(fontSize: 13.5, color: PlanoColors.textSecondary),
+              ),
               const SizedBox(height: 20),
               for (final benefit in mockBenefits)
                 _BenefitCard(
@@ -64,33 +63,38 @@ class BenefitsScreen extends StatelessWidget {
               const SizedBox(height: 20),
               SoftIconBox(benefit.icon, size: 64),
               const SizedBox(height: 14),
-              Text(benefit.partner,
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.w700)),
+              Text(
+                benefit.partner,
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 6),
-              Text(benefit.offer,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontSize: 14, color: PlanoColors.textSecondary)),
+              Text(
+                benefit.offer,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 14, color: PlanoColors.textSecondary),
+              ),
               const SizedBox(height: 20),
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
                 decoration: BoxDecoration(
                   color: PlanoColors.greenSoft,
                   borderRadius: BorderRadius.circular(14),
                 ),
-                child: Text(benefit.code,
-                    style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 2,
-                        color: PlanoColors.greenMid)),
+                child: Text(
+                  benefit.code,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 2,
+                    color: PlanoColors.greenMid,
+                  ),
+                ),
               ),
               const SizedBox(height: 8),
-              const Text('Apresente este código no parceiro.',
-                  style: TextStyle(
-                      fontSize: 12, color: PlanoColors.textSecondary)),
+              const Text(
+                'Apresente este código no parceiro.',
+                style: TextStyle(fontSize: 12, color: PlanoColors.textSecondary),
+              ),
               const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
@@ -100,12 +104,9 @@ class BenefitsScreen extends StatelessWidget {
                   style: FilledButton.styleFrom(
                     backgroundColor: PlanoColors.green,
                     foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                   ),
-                  child: const Text('Fechar',
-                      style: TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w600)),
+                  child: const Text('Fechar', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
                 ),
               ),
             ],
@@ -139,26 +140,24 @@ class _BenefitCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(benefit.partner,
-                    style: const TextStyle(
-                        fontSize: 15, fontWeight: FontWeight.w600)),
+                Text(benefit.partner, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
                 const SizedBox(height: 3),
-                Text(benefit.offer,
-                    style: const TextStyle(
-                        fontSize: 13, color: PlanoColors.textSecondary)),
+                Text(benefit.offer, style: const TextStyle(fontSize: 13, color: PlanoColors.textSecondary)),
                 const SizedBox(height: 8),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 8, vertical: 3),
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                   decoration: BoxDecoration(
                     color: PlanoColors.greenSoft,
                     borderRadius: BorderRadius.circular(100),
                   ),
-                  child: Text(benefit.tag,
-                      style: const TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600,
-                          color: PlanoColors.greenMid)),
+                  child: Text(
+                    benefit.tag,
+                    style: const TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                      color: PlanoColors.greenMid,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -169,13 +168,10 @@ class _BenefitCard extends StatelessWidget {
             style: TextButton.styleFrom(
               backgroundColor: PlanoColors.greenSoft,
               foregroundColor: PlanoColors.greenMid,
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             ),
-            child: const Text('Resgatar',
-                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700)),
+            child: const Text('Resgatar', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700)),
           ),
         ],
       ),

@@ -23,8 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   static final _mainLabels = planCategories.map((c) => c.$1).toSet();
 
-  String? get _extraSelected =>
-      _filter != null && !_mainLabels.contains(_filter) ? _filter : null;
+  String? get _extraSelected => _filter != null && !_mainLabels.contains(_filter) ? _filter : null;
 
   String _greeting() {
     final h = DateTime.now().hour;
@@ -47,8 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return result;
   }
 
-  void _toggleFilter(String label) =>
-      setState(() => _filter = _filter == label ? null : label);
+  void _toggleFilter(String label) => setState(() => _filter = _filter == label ? null : label);
 
   Future<void> _openMoreTypes() async {
     final selected = await showModalBottomSheet<String>(
@@ -95,8 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Center(
                   child: TextButton(
                     onPressed: () => Navigator.pop(sheetContext, ''),
-                    child: const Text('Limpar filtro',
-                        style: TextStyle(color: PlanoColors.textSecondary)),
+                    child: const Text('Limpar filtro', style: TextStyle(color: PlanoColors.textSecondary)),
                   ),
                 ),
               ],
@@ -106,8 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
     if (selected == null || !mounted) return;
-    setState(() => _filter =
-        selected.isEmpty ? null : (_filter == selected ? null : selected));
+    setState(() => _filter = selected.isEmpty ? null : (_filter == selected ? null : selected));
   }
 
   @override
@@ -133,9 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 26),
                   _categories(),
                   const SizedBox(height: 26),
-                  SectionTitle(_query.trim().isNotEmpty
-                      ? 'Resultados'
-                      : (_filter ?? 'Planos em destaque')),
+                  SectionTitle(_query.trim().isNotEmpty ? 'Resultados' : (_filter ?? 'Planos em destaque')),
                   const SizedBox(height: 12),
                   if (plans.isEmpty)
                     _emptyResults()
@@ -143,8 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     for (final plan in plans)
                       PlanCard(
                         plan,
-                        onTap: () => RootShell.of(context)
-                            .pushInShell(PlanDetailScreen(plan)),
+                        onTap: () => RootShell.of(context).pushInShell(PlanDetailScreen(plan)),
                       ),
                 ],
               );
@@ -162,21 +155,14 @@ class _HomeScreenState extends State<HomeScreen> {
         const CircleAvatar(
           radius: 20,
           backgroundColor: PlanoColors.greenSoft,
-          child: Text('J',
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  color: PlanoColors.greenMid)),
+          child: Text('J', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: PlanoColors.greenMid)),
         ),
         const SizedBox(width: 12),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(_greeting(),
-                style: const TextStyle(
-                    fontSize: 13, color: PlanoColors.textSecondary)),
-            const Text(AppState.userName,
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700)),
+            Text(_greeting(), style: const TextStyle(fontSize: 13, color: PlanoColors.textSecondary)),
+            const Text(AppState.userName, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700)),
           ],
         ),
         const Spacer(),
@@ -185,8 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onPressed: () => Navigator.of(context, rootNavigator: true).push(
             MaterialPageRoute(builder: (_) => const SettingsScreen()),
           ),
-          icon: const Icon(Icons.settings_outlined,
-              color: PlanoColors.textPrimary),
+          icon: const Icon(Icons.settings_outlined, color: PlanoColors.textPrimary),
           tooltip: 'Ajustes',
         ),
       ],
@@ -199,10 +184,8 @@ class _HomeScreenState extends State<HomeScreen> {
       textInputAction: TextInputAction.search,
       decoration: InputDecoration(
         hintText: 'Buscar planos',
-        hintStyle:
-            const TextStyle(color: PlanoColors.textSecondary, fontSize: 14.5),
-        prefixIcon:
-            const Icon(Icons.search_rounded, color: PlanoColors.textSecondary),
+        hintStyle: const TextStyle(color: PlanoColors.textSecondary, fontSize: 14.5),
+        prefixIcon: const Icon(Icons.search_rounded, color: PlanoColors.textSecondary),
         filled: true,
         fillColor: PlanoColors.surfaceAlt,
         contentPadding: const EdgeInsets.symmetric(vertical: 14),
@@ -219,25 +202,21 @@ class _HomeScreenState extends State<HomeScreen> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
         boxShadow: const [
-          BoxShadow(
-              color: Color(0x335FAE7F), blurRadius: 16, offset: Offset(0, 6)),
+          BoxShadow(color: Color(0x335FAE7F), blurRadius: 16, offset: Offset(0, 6)),
         ],
       ),
       child: SizedBox(
         height: 60,
         width: double.infinity,
         child: FilledButton.icon(
-          onPressed: () =>
-              RootShell.of(context).pushInShell(const CreatePlanScreen()),
+          onPressed: () => RootShell.of(context).pushInShell(const CreatePlanScreen()),
           style: FilledButton.styleFrom(
             backgroundColor: PlanoColors.green,
             foregroundColor: Colors.white,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
           ),
           icon: const Icon(Icons.add_rounded, size: 24),
-          label: const Text('Criar meu próprio plano',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+          label: const Text('Criar meu próprio plano', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
         ),
       ),
     );
@@ -261,9 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
           _CategoryButton(
             label: _extraSelected ?? 'Mais',
-            icon: _extraSelected != null
-                ? iconForCategory(_extraSelected!)
-                : Icons.travel_explore_rounded,
+            icon: _extraSelected != null ? iconForCategory(_extraSelected!) : Icons.travel_explore_rounded,
             selected: _extraSelected != null,
             muted: _extraSelected == null,
             onTap: _openMoreTypes,
@@ -278,15 +255,15 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: EdgeInsets.symmetric(vertical: 32),
       child: Column(
         children: [
-          Icon(Icons.search_off_rounded,
-              size: 40, color: PlanoColors.textSecondary),
+          Icon(Icons.search_off_rounded, size: 40, color: PlanoColors.textSecondary),
           SizedBox(height: 12),
-          Text('Nenhum plano encontrado',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+          Text('Nenhum plano encontrado', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
           SizedBox(height: 4),
-          Text('Tente outra busca — ou crie o seu próprio plano.',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 13, color: PlanoColors.textSecondary)),
+          Text(
+            'Tente outra busca — ou crie o seu próprio plano.',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 13, color: PlanoColors.textSecondary),
+          ),
         ],
       ),
     );
@@ -310,12 +287,8 @@ class _CategoryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color bg = selected
-        ? PlanoColors.green
-        : (muted ? PlanoColors.surfaceAlt : PlanoColors.greenSoft);
-    final Color fg = selected
-        ? Colors.white
-        : (muted ? PlanoColors.textSecondary : PlanoColors.greenMid);
+    final Color bg = selected ? PlanoColors.green : (muted ? PlanoColors.surfaceAlt : PlanoColors.greenSoft);
+    final Color fg = selected ? Colors.white : (muted ? PlanoColors.textSecondary : PlanoColors.greenMid);
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
@@ -340,8 +313,7 @@ class _CategoryButton extends StatelessWidget {
               style: TextStyle(
                 fontSize: 11.5,
                 fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                color:
-                    selected ? PlanoColors.greenMid : PlanoColors.textSecondary,
+                color: selected ? PlanoColors.greenMid : PlanoColors.textSecondary,
               ),
             ),
           ],
@@ -373,21 +345,21 @@ class _TypeChip extends StatelessWidget {
         decoration: BoxDecoration(
           color: selected ? PlanoColors.green : PlanoColors.surface,
           borderRadius: BorderRadius.circular(100),
-          border: Border.all(
-              color: selected ? PlanoColors.green : PlanoColors.border),
+          border: Border.all(color: selected ? PlanoColors.green : PlanoColors.border),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon,
-                size: 16,
-                color: selected ? Colors.white : PlanoColors.greenMid),
+            Icon(icon, size: 16, color: selected ? Colors.white : PlanoColors.greenMid),
             const SizedBox(width: 7),
-            Text(label,
-                style: TextStyle(
-                    fontSize: 13.5,
-                    fontWeight: FontWeight.w600,
-                    color: selected ? Colors.white : PlanoColors.textPrimary)),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 13.5,
+                fontWeight: FontWeight.w600,
+                color: selected ? Colors.white : PlanoColors.textPrimary,
+              ),
+            ),
           ],
         ),
       ),

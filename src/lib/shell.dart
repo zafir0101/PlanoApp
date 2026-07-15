@@ -15,8 +15,7 @@ import 'theme.dart';
 class RootShell extends StatefulWidget {
   const RootShell({super.key});
 
-  static RootShellState of(BuildContext context) =>
-      context.findAncestorStateOfType<RootShellState>()!;
+  static RootShellState of(BuildContext context) => context.findAncestorStateOfType<RootShellState>()!;
 
   @override
   State<RootShell> createState() => RootShellState();
@@ -33,10 +32,11 @@ class RootShellState extends State<RootShell> {
   }
 
   /// Empurra uma tela DENTRO do shell (barra continua visível).
-  Future<T?> pushInShell<T>(Widget screen) =>
-      _nestedNav.currentState!.push<T>(
-        MaterialPageRoute(builder: (_) => screen),
-      );
+  Future<T?> pushInShell<T>(Widget screen) {
+    return _nestedNav.currentState!.push<T>(
+      MaterialPageRoute(builder: (_) => screen),
+    );
+  }
 
   @override
   void dispose() {
@@ -74,8 +74,7 @@ class RootShellState extends State<RootShell> {
         ),
         bottomNavigationBar: ValueListenableBuilder<int>(
           valueListenable: _tab,
-          builder: (_, index, __) =>
-              FloatingNavBar(index: index, onTap: switchTab),
+          builder: (_, index, __) => FloatingNavBar(index: index, onTap: switchTab),
         ),
       ),
     );
@@ -92,8 +91,7 @@ class FloatingNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final bottomInset = MediaQuery.of(context).viewPadding.bottom;
     return Padding(
-      padding: EdgeInsets.fromLTRB(
-          20, 0, 20, bottomInset > 0 ? bottomInset + 4 : 18),
+      padding: EdgeInsets.fromLTRB(20, 0, 20, bottomInset > 0 ? bottomInset + 4 : 18),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(28),
@@ -119,10 +117,8 @@ class FloatingNavBar extends StatelessWidget {
               child: Row(
                 children: [
                   _item(0, Icons.home_outlined, Icons.home_rounded, 'Home'),
-                  _item(1, Icons.event_note_outlined, Icons.event_note_rounded,
-                      'Meus Planos'),
-                  _item(2, Icons.card_giftcard_outlined,
-                      Icons.card_giftcard_rounded, 'Benefícios'),
+                  _item(1, Icons.event_note_outlined, Icons.event_note_rounded, 'Meus Planos'),
+                  _item(2, Icons.card_giftcard_outlined, Icons.card_giftcard_rounded, 'Benefícios'),
                 ],
               ),
             ),
@@ -134,8 +130,7 @@ class FloatingNavBar extends StatelessWidget {
 
   Widget _item(int i, IconData icon, IconData activeIcon, String label) {
     final selected = index == i;
-    final color =
-        selected ? PlanoColors.greenMid : PlanoColors.textSecondary;
+    final color = selected ? PlanoColors.greenMid : PlanoColors.textSecondary;
     return Expanded(
       child: InkWell(
         borderRadius: BorderRadius.circular(24),
@@ -146,15 +141,12 @@ class FloatingNavBar extends StatelessWidget {
             AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               curve: Curves.easeOut,
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               decoration: BoxDecoration(
-                color:
-                    selected ? PlanoColors.greenSoft : Colors.transparent,
+                color: selected ? PlanoColors.greenSoft : Colors.transparent,
                 borderRadius: BorderRadius.circular(100),
               ),
-              child: Icon(selected ? activeIcon : icon,
-                  size: 22, color: color),
+              child: Icon(selected ? activeIcon : icon, size: 22, color: color),
             ),
             const SizedBox(height: 3),
             Text(

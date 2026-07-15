@@ -9,14 +9,16 @@ class SectionTitle extends StatelessWidget {
   const SectionTitle(this.text, {super.key, this.color});
 
   @override
-  Widget build(BuildContext context) => Text(
-        text,
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w700,
-          color: color ?? PlanoColors.textPrimary,
-        ),
-      );
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: color ?? PlanoColors.textPrimary,
+      ),
+    );
+  }
 }
 
 /// Quadrado arredondado com ícone (verde suave por padrão).
@@ -34,15 +36,17 @@ class SoftIconBox extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          color: bg,
-          borderRadius: BorderRadius.circular(size * 0.32),
-        ),
-        child: Icon(icon, color: fg, size: size * 0.5),
-      );
+  Widget build(BuildContext context) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(size * 0.32),
+      ),
+      child: Icon(icon, color: fg, size: size * 0.5),
+    );
+  }
 }
 
 /// Pílula com o tipo do plano.
@@ -66,9 +70,7 @@ class CategoryPill extends StatelessWidget {
         children: [
           Icon(icon, size: 14, color: fg),
           const SizedBox(width: 6),
-          Text(label,
-              style: TextStyle(
-                  fontSize: 12, fontWeight: FontWeight.w600, color: fg)),
+          Text(label, style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: fg)),
         ],
       ),
     );
@@ -110,37 +112,37 @@ class MemberAvatars extends StatelessWidget {
     if (slots == 0) return const SizedBox.shrink();
     final step = size * 0.66;
 
-    Widget circle(String text, int i) => Container(
-          width: size,
-          height: size,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: light ? PlanoColors.white15 : _bgs[i % _bgs.length],
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: light ? PlanoColors.greenDeep : Colors.white,
-              width: 2,
-            ),
+    Widget circle(String text, int i) {
+      return Container(
+        width: size,
+        height: size,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: light ? PlanoColors.white15 : _bgs[i % _bgs.length],
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: light ? PlanoColors.greenDeep : Colors.white,
+            width: 2,
           ),
-          child: Text(
-            text,
-            style: TextStyle(
-              fontSize: size * 0.34,
-              fontWeight: FontWeight.w700,
-              color: light ? Colors.white : _fgs[i % _fgs.length],
-            ),
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: size * 0.34,
+            fontWeight: FontWeight.w700,
+            color: light ? Colors.white : _fgs[i % _fgs.length],
           ),
-        );
+        ),
+      );
+    }
 
     return SizedBox(
       width: size + (slots - 1) * step,
       height: size,
       child: Stack(
         children: [
-          for (var i = 0; i < show.length; i++)
-            Positioned(left: i * step, child: circle(show[i].initials, i)),
-          if (extra > 0)
-            Positioned(left: show.length * step, child: circle('+$extra', 3)),
+          for (var i = 0; i < show.length; i++) Positioned(left: i * step, child: circle(show[i].initials, i)),
+          if (extra > 0) Positioned(left: show.length * step, child: circle('+$extra', 3)),
         ],
       ),
     );
@@ -153,13 +155,11 @@ class InfoRow extends StatelessWidget {
   final String label;
   final String value;
   final bool light;
-  const InfoRow(this.icon, this.label, this.value,
-      {super.key, this.light = false});
+  const InfoRow(this.icon, this.label, this.value, {super.key, this.light = false});
 
   @override
   Widget build(BuildContext context) {
-    final labelColor =
-        light ? const Color(0xFFA8CDB8) : PlanoColors.textSecondary;
+    final labelColor = light ? const Color(0xFFA8CDB8) : PlanoColors.textSecondary;
     final valueColor = light ? Colors.white : PlanoColors.textPrimary;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -170,19 +170,9 @@ class InfoRow extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(label,
-                  style: TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 0.8,
-                      color: labelColor)),
+              Text(label, style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, letterSpacing: 0.8, color: labelColor)),
               const SizedBox(height: 2),
-              Text(value,
-                  style: TextStyle(
-                      fontSize: 14.5,
-                      fontWeight: FontWeight.w600,
-                      height: 1.3,
-                      color: valueColor)),
+              Text(value, style: TextStyle(fontSize: 14.5, fontWeight: FontWeight.w600, height: 1.3, color: valueColor)),
             ],
           ),
         ),
@@ -196,20 +186,21 @@ class BackCircle extends StatelessWidget {
   const BackCircle({super.key});
 
   @override
-  Widget build(BuildContext context) => GestureDetector(
-        onTap: () => Navigator.of(context).maybePop(),
-        child: Container(
-          width: 42,
-          height: 42,
-          decoration: BoxDecoration(
-            color: PlanoColors.surface,
-            shape: BoxShape.circle,
-            border: Border.all(color: PlanoColors.border),
-          ),
-          child: const Icon(Icons.arrow_back_rounded,
-              size: 20, color: PlanoColors.textPrimary),
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Navigator.of(context).maybePop(),
+      child: Container(
+        width: 42,
+        height: 42,
+        decoration: BoxDecoration(
+          color: PlanoColors.surface,
+          shape: BoxShape.circle,
+          border: Border.all(color: PlanoColors.border),
         ),
-      );
+        child: const Icon(Icons.arrow_back_rounded, size: 20, color: PlanoColors.textPrimary),
+      ),
+    );
+  }
 }
 
 /// Card de plano (lista da Home).
@@ -243,31 +234,29 @@ class PlanCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(plan.title,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.w600)),
+                        Text(
+                          plan.title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                        ),
                         const SizedBox(height: 4),
                         Text(
                           '${plan.category} · ${formatShort(plan.dateTime)}',
-                          style: const TextStyle(
-                              fontSize: 12.5,
-                              color: PlanoColors.textSecondary),
+                          style: const TextStyle(fontSize: 12.5, color: PlanoColors.textSecondary),
                         ),
                         const SizedBox(height: 5),
                         Row(
                           children: [
-                            const Icon(Icons.place_outlined,
-                                size: 13, color: PlanoColors.textSecondary),
+                            const Icon(Icons.place_outlined, size: 13, color: PlanoColors.textSecondary),
                             const SizedBox(width: 4),
                             Expanded(
-                              child: Text(plan.location,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                      fontSize: 12.5,
-                                      color: PlanoColors.textSecondary)),
+                              child: Text(
+                                plan.location,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(fontSize: 12.5, color: PlanoColors.textSecondary),
+                              ),
                             ),
                           ],
                         ),

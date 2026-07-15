@@ -90,29 +90,46 @@ const _weekdaysFull = [
   'domingo',
 ];
 const _monthsShort = [
-  'jan', 'fev', 'mar', 'abr', 'mai', 'jun',
-  'jul', 'ago', 'set', 'out', 'nov', 'dez',
+  'jan',
+  'fev',
+  'mar',
+  'abr',
+  'mai',
+  'jun',
+  'jul',
+  'ago',
+  'set',
+  'out',
+  'nov',
+  'dez',
 ];
 const _monthsFull = [
-  'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
-  'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro',
+  'janeiro',
+  'fevereiro',
+  'março',
+  'abril',
+  'maio',
+  'junho',
+  'julho',
+  'agosto',
+  'setembro',
+  'outubro',
+  'novembro',
+  'dezembro',
 ];
 
 String two(int n) => n.toString().padLeft(2, '0');
 
 /// Ex.: "sáb, 18 jul · 09:00"
-String formatShort(DateTime d) =>
-    '${_weekdaysShort[d.weekday - 1]}, ${d.day} ${_monthsShort[d.month - 1]} · ${formatTime(d)}';
+String formatShort(DateTime d) => '${_weekdaysShort[d.weekday - 1]}, ${d.day} ${_monthsShort[d.month - 1]} · ${formatTime(d)}';
 
 /// Ex.: "sábado, 18 de julho"
-String formatFullDate(DateTime d) =>
-    '${_weekdaysFull[d.weekday - 1]}, ${d.day} de ${_monthsFull[d.month - 1]}';
+String formatFullDate(DateTime d) => '${_weekdaysFull[d.weekday - 1]}, ${d.day} de ${_monthsFull[d.month - 1]}';
 
 /// Ex.: "09:00"
 String formatTime(DateTime d) => '${two(d.hour)}:${two(d.minute)}';
 
-String capitalize(String s) =>
-    s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
+String capitalize(String s) => s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
 
 /// Ex.: "Ana, Pedro, Marina e mais 2"
 String membersLine(List<Member> members) {
@@ -130,8 +147,7 @@ String membersLine(List<Member> members) {
 List<Plan> buildMockPlans() {
   final now = DateTime.now();
   DateTime at(int days, int hour, [int minute = 0]) =>
-      DateTime(now.year, now.month, now.day, hour, minute)
-          .add(Duration(days: days));
+      DateTime(now.year, now.month, now.day, hour, minute).add(Duration(days: days));
 
   return [
     Plan(
@@ -141,8 +157,7 @@ List<Plan> buildMockPlans() {
       icon: Icons.terrain_rounded,
       dateTime: at(1, 6, 30),
       location: 'Pedra Grande — Atibaia, SP',
-      description:
-          'Subida tranquila de 3 km para ver o nascer do sol lá de cima. '
+      description: 'Subida tranquila de 3 km para ver o nascer do sol lá de cima. '
           'Ritmo leve, café compartilhado no topo. Leve água e um agasalho.',
       members: [
         const Member('Ana Souza'),
@@ -158,8 +173,7 @@ List<Plan> buildMockPlans() {
       icon: Icons.local_cafe_rounded,
       dateTime: at(2, 16, 0),
       location: 'Café Alma — Vila Madalena, SP',
-      description:
-          'Um fim de tarde sem pressa: cafés especiais, boas conversas '
+      description: 'Um fim de tarde sem pressa: cafés especiais, boas conversas '
           'e zero celular na mesa.',
       members: [
         const Member('Júlia Antunes'),
@@ -174,8 +188,7 @@ List<Plan> buildMockPlans() {
       icon: Icons.beach_access_rounded,
       dateTime: at(3, 9, 0),
       location: 'Praia de Icaraí — Niterói, RJ',
-      description:
-          'Jogo leve pra quem quer se mexer e conhecer gente nova. '
+      description: 'Jogo leve pra quem quer se mexer e conhecer gente nova. '
           'Todos os níveis são bem-vindos.',
       members: [
         const Member('Thiago Nunes'),
@@ -192,8 +205,7 @@ List<Plan> buildMockPlans() {
       icon: Icons.extension_rounded,
       dateTime: at(4, 19, 30),
       location: 'Ludoteca Central — Pinheiros, SP',
-      description:
-          'Catan, Dixit e o que mais aparecer. Ambiente descontraído, '
+      description: 'Catan, Dixit e o que mais aparecer. Ambiente descontraído, '
           'entrada livre.',
       members: [
         const Member('Nina Torres'),
@@ -208,8 +220,7 @@ List<Plan> buildMockPlans() {
       icon: Icons.park_rounded,
       dateTime: at(6, 10, 0),
       location: 'Parque do Ibirapuera — São Paulo, SP',
-      description:
-          'Cada um leva algo pra compartilhar. Música baixa, jogos de '
+      description: 'Cada um leva algo pra compartilhar. Música baixa, jogos de '
           'gramado e boa companhia.',
       members: [
         const Member('Sofia Lemos'),
@@ -222,16 +233,10 @@ List<Plan> buildMockPlans() {
 }
 
 const mockBenefits = <Benefit>[
-  Benefit('Café Alma', '20% de desconto em qualquer bebida', 'Cafés',
-      Icons.local_cafe_rounded, 'PLANO-ALMA20'),
-  Benefit('Studio Gaia', 'Aula experimental de yoga gratuita', 'Atividades',
-      Icons.self_improvement_rounded, 'PLANO-GAIA1'),
-  Benefit('Casa Boulder', '2x1 na diária de escalada', 'Atividades',
-      Icons.fitness_center_rounded, 'PLANO-BOULDER'),
-  Benefit('Restaurante Raiz', '15% no almoço de sábado', 'Restaurantes',
-      Icons.restaurant_rounded, 'PLANO-RAIZ15'),
-  Benefit('Onda Surf School', 'Primeira aula de surf grátis', 'Atividades',
-      Icons.surfing_rounded, 'PLANO-ONDA1'),
-  Benefit('Cine Vila', 'Ingresso duplo com 30% de desconto', 'Cultura',
-      Icons.theaters_rounded, 'PLANO-CINE30'),
+  Benefit('Café Alma', '20% de desconto em qualquer bebida', 'Cafés', Icons.local_cafe_rounded, 'PLANO-ALMA20'),
+  Benefit('Studio Gaia', 'Aula experimental de yoga gratuita', 'Atividades', Icons.self_improvement_rounded, 'PLANO-GAIA1'),
+  Benefit('Casa Boulder', '2x1 na diária de escalada', 'Atividades', Icons.fitness_center_rounded, 'PLANO-BOULDER'),
+  Benefit('Restaurante Raiz', '15% no almoço de sábado', 'Restaurantes', Icons.restaurant_rounded, 'PLANO-RAIZ15'),
+  Benefit('Onda Surf School', 'Primeira aula de surf grátis', 'Atividades', Icons.surfing_rounded, 'PLANO-ONDA1'),
+  Benefit('Cine Vila', 'Ingresso duplo com 30% de desconto', 'Cultura', Icons.theaters_rounded, 'PLANO-CINE30'),
 ];

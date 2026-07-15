@@ -37,18 +37,18 @@ class MyPlansScreen extends StatelessWidget {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(20, 16, 20, 120),
                 children: [
-                  const Text('Meus Planos',
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white)),
+                  const Text(
+                    'Meus Planos',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                    ),
+                  ),
                   const SizedBox(height: 4),
                   Text(
-                    others.isEmpty
-                        ? 'Seu próximo plano'
-                        : 'Seu próximo plano · +${others.length} na agenda',
-                    style:
-                        const TextStyle(fontSize: 13, color: Color(0xFFA8CDB8)),
+                    others.isEmpty ? 'Seu próximo plano' : 'Seu próximo plano · +${others.length} na agenda',
+                    style: const TextStyle(fontSize: 13, color: Color(0xFFA8CDB8)),
                   ),
                   const SizedBox(height: 22),
                   Row(
@@ -56,18 +56,22 @@ class MyPlansScreen extends StatelessWidget {
                       CategoryPill(active.category, active.icon, dark: true),
                       const Spacer(),
                       if (active.createdByMe)
-                        const Text('Criado por você',
-                            style: TextStyle(
-                                fontSize: 12, color: Color(0xFFA8CDB8))),
+                        const Text(
+                          'Criado por você',
+                          style: TextStyle(fontSize: 12, color: Color(0xFFA8CDB8)),
+                        ),
                     ],
                   ),
                   const SizedBox(height: 12),
-                  Text(active.title,
-                      style: const TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.w700,
-                          height: 1.15,
-                          color: Colors.white)),
+                  Text(
+                    active.title,
+                    style: const TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w700,
+                      height: 1.15,
+                      color: Colors.white,
+                    ),
+                  ),
                   const SizedBox(height: 20),
                   // Relógio: quanto tempo falta para o evento
                   Container(
@@ -92,24 +96,18 @@ class MyPlansScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        InfoRow(Icons.calendar_today_outlined, 'DATA',
-                            capitalize(formatFullDate(active.dateTime)),
-                            light: true),
+                        InfoRow(Icons.calendar_today_outlined, 'DATA', capitalize(formatFullDate(active.dateTime)), light: true),
                         const SizedBox(height: 14),
-                        InfoRow(Icons.schedule_rounded, 'HORÁRIO',
-                            formatTime(active.dateTime),
-                            light: true),
+                        InfoRow(Icons.schedule_rounded, 'HORÁRIO', formatTime(active.dateTime), light: true),
                         const SizedBox(height: 14),
-                        InfoRow(Icons.place_outlined, 'LOCAL', active.location,
-                            light: true),
+                        InfoRow(Icons.place_outlined, 'LOCAL', active.location, light: true),
                         const SizedBox(height: 16),
                         Container(height: 1, color: PlanoColors.white12),
                         const SizedBox(height: 14),
-                        Text(active.description,
-                            style: const TextStyle(
-                                fontSize: 13.5,
-                                height: 1.55,
-                                color: PlanoColors.onGreenDeep)),
+                        Text(
+                          active.description,
+                          style: const TextStyle(fontSize: 13.5, height: 1.55, color: PlanoColors.onGreenDeep),
+                        ),
                       ],
                     ),
                   ),
@@ -118,13 +116,11 @@ class MyPlansScreen extends StatelessWidget {
                   const SizedBox(height: 12),
                   Row(
                     children: [
-                      MemberAvatars(active.members,
-                          max: 4, size: 32, light: true),
+                      MemberAvatars(active.members, max: 4, size: 32, light: true),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(membersLine(active.members),
-                            style: const TextStyle(
-                                fontSize: 13, color: PlanoColors.onGreenDeep)),
+                            style: const TextStyle(fontSize: 13, color: PlanoColors.onGreenDeep)),
                       ),
                     ],
                   ),
@@ -135,9 +131,7 @@ class MyPlansScreen extends StatelessWidget {
                         appState.leavePlan(active);
                         showToast(context, 'Você saiu do plano.');
                       },
-                      child: const Text('Sair do plano',
-                          style: TextStyle(
-                              fontSize: 13, color: PlanoColors.white70)),
+                      child: const Text('Sair do plano', style: TextStyle(fontSize: 13, color: PlanoColors.white70)),
                     ),
                   ),
                   if (others.isNotEmpty) ...[
@@ -169,11 +163,7 @@ class MyPlansScreen extends StatelessWidget {
           children: [
             Icon(Icons.check_rounded, color: Colors.white, size: 20),
             SizedBox(width: 8),
-            Text('Você está a caminho',
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white)),
+            Text('Você está a caminho', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.white)),
           ],
         ),
       );
@@ -189,12 +179,10 @@ class MyPlansScreen extends StatelessWidget {
         style: FilledButton.styleFrom(
           backgroundColor: Colors.white,
           foregroundColor: PlanoColors.greenDeep,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         ),
         icon: const Icon(Icons.near_me_rounded, size: 20),
-        label: const Text('Já estou a caminho',
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700)),
+        label: const Text('Já estou a caminho', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700)),
       ),
     );
   }
@@ -236,18 +224,15 @@ class _CountdownClockState extends State<CountdownClock> {
     double size = 38;
 
     if (diff.isNegative) {
-      final stillHappening =
-          now.isBefore(widget.target.add(const Duration(hours: 3)));
+      final stillHappening = now.isBefore(widget.target.add(const Duration(hours: 3)));
       text = stillHappening ? 'Acontecendo agora' : 'Encerrado';
       caption = stillHappening ? 'aproveite!' : 'até a próxima';
       size = 24;
     } else if (diff.inDays >= 1) {
-      text =
-          '${diff.inDays}d ${two(diff.inHours % 24)}h ${two(diff.inMinutes % 60)}min';
+      text = '${diff.inDays}d ${two(diff.inHours % 24)}h ${two(diff.inMinutes % 60)}min';
       caption = 'para o plano começar';
     } else {
-      text =
-          '${two(diff.inHours)}:${two(diff.inMinutes % 60)}:${two(diff.inSeconds % 60)}';
+      text = '${two(diff.inHours)}:${two(diff.inMinutes % 60)}:${two(diff.inSeconds % 60)}';
       caption = 'para o plano começar';
     }
 
@@ -263,8 +248,7 @@ class _CountdownClockState extends State<CountdownClock> {
           ),
         ),
         const SizedBox(height: 4),
-        Text(caption,
-            style: const TextStyle(fontSize: 13, color: Color(0xFFA8CDB8))),
+        Text(caption, style: const TextStyle(fontSize: 13, color: Color(0xFFA8CDB8))),
       ],
     );
   }
@@ -287,9 +271,7 @@ class _EmptyState extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Meus Planos',
-                    style:
-                        TextStyle(fontSize: 22, fontWeight: FontWeight.w700)),
+                const Text('Meus Planos', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700)),
                 Expanded(
                   child: Center(
                     child: Column(
@@ -297,17 +279,12 @@ class _EmptyState extends StatelessWidget {
                       children: [
                         const SoftIconBox(Icons.event_note_rounded, size: 84),
                         const SizedBox(height: 20),
-                        const Text('Nenhum plano por enquanto',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w700)),
+                        const Text('Nenhum plano por enquanto', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
                         const SizedBox(height: 8),
                         const Text(
                           'Encontre um plano que combine com você\nou crie o seu próprio.',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 14,
-                              height: 1.5,
-                              color: PlanoColors.textSecondary),
+                          style: TextStyle(fontSize: 14, height: 1.5, color: PlanoColors.textSecondary),
                         ),
                         const SizedBox(height: 24),
                         FilledButton(
@@ -315,14 +292,10 @@ class _EmptyState extends StatelessWidget {
                           style: FilledButton.styleFrom(
                             backgroundColor: PlanoColors.green,
                             foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 28, vertical: 14),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16)),
+                            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                           ),
-                          child: const Text('Explorar planos',
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w600)),
+                          child: const Text('Explorar planos', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
                         ),
                       ],
                     ),
@@ -355,35 +328,32 @@ class _MiniPlanTile extends StatelessWidget {
           ),
           child: InkWell(
             borderRadius: BorderRadius.circular(18),
-            onTap: () =>
-                RootShell.of(context).pushInShell(PlanDetailScreen(plan)),
+            onTap: () => RootShell.of(context).pushInShell(PlanDetailScreen(plan)),
             child: Padding(
               padding: const EdgeInsets.all(12),
               child: Row(
                 children: [
-                  SoftIconBox(plan.icon,
-                      size: 42, bg: PlanoColors.white12, fg: Colors.white),
+                  SoftIconBox(plan.icon, size: 42, bg: PlanoColors.white12, fg: Colors.white),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(plan.title,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                                fontSize: 14.5,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white)),
+                        Text(
+                          plan.title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.w600, color: Colors.white),
+                        ),
                         const SizedBox(height: 3),
-                        Text(formatShort(plan.dateTime),
-                            style: const TextStyle(
-                                fontSize: 12.5, color: Color(0xFFA8CDB8))),
+                        Text(
+                          formatShort(plan.dateTime),
+                          style: const TextStyle(fontSize: 12.5, color: Color(0xFFA8CDB8)),
+                        ),
                       ],
                     ),
                   ),
-                  const Icon(Icons.chevron_right_rounded,
-                      color: PlanoColors.white70, size: 22),
+                  const Icon(Icons.chevron_right_rounded, color: PlanoColors.white70, size: 22),
                 ],
               ),
             ),

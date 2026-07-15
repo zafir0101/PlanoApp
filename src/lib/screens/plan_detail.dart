@@ -29,11 +29,14 @@ class PlanDetailScreen extends StatelessWidget {
                 const SizedBox(height: 20),
                 Row(children: [CategoryPill(plan.category, plan.icon)]),
                 const SizedBox(height: 10),
-                Text(plan.title,
-                    style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        height: 1.2)),
+                Text(
+                  plan.title,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700,
+                    height: 1.2,
+                  ),
+                ),
                 const SizedBox(height: 18),
                 Container(
                   padding: const EdgeInsets.all(18),
@@ -44,11 +47,9 @@ class PlanDetailScreen extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      InfoRow(Icons.calendar_today_outlined, 'DATA',
-                          capitalize(formatFullDate(plan.dateTime))),
+                      InfoRow(Icons.calendar_today_outlined, 'DATA', capitalize(formatFullDate(plan.dateTime))),
                       const SizedBox(height: 14),
-                      InfoRow(Icons.schedule_rounded, 'HORÁRIO',
-                          formatTime(plan.dateTime)),
+                      InfoRow(Icons.schedule_rounded, 'HORÁRIO', formatTime(plan.dateTime)),
                       const SizedBox(height: 14),
                       InfoRow(Icons.place_outlined, 'LOCAL', plan.location),
                     ],
@@ -57,11 +58,7 @@ class PlanDetailScreen extends StatelessWidget {
                 const SizedBox(height: 22),
                 const SectionTitle('Sobre o plano'),
                 const SizedBox(height: 8),
-                Text(plan.description,
-                    style: const TextStyle(
-                        fontSize: 14,
-                        height: 1.55,
-                        color: Color(0xFF4A514A))),
+                Text(plan.description, style: const TextStyle(fontSize: 14, height: 1.55, color: Color(0xFF4A514A))),
                 const SizedBox(height: 22),
                 SectionTitle('Quem vai · ${plan.members.length}'),
                 const SizedBox(height: 12),
@@ -88,8 +85,7 @@ class PlanDetailScreen extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
         boxShadow: const [
-          BoxShadow(
-              color: Color(0x335FAE7F), blurRadius: 16, offset: Offset(0, 6)),
+          BoxShadow(color: Color(0x335FAE7F), blurRadius: 16, offset: Offset(0, 6)),
         ],
       ),
       child: SizedBox(
@@ -105,11 +101,9 @@ class PlanDetailScreen extends StatelessWidget {
           style: FilledButton.styleFrom(
             backgroundColor: PlanoColors.green,
             foregroundColor: Colors.white,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
           ),
-          child: const Text('Participar do plano',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+          child: const Text('Participar do plano', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
         ),
       ),
     );
@@ -129,11 +123,14 @@ class PlanDetailScreen extends StatelessWidget {
             children: [
               Icon(Icons.check_circle_rounded, color: PlanoColors.greenMid),
               SizedBox(width: 10),
-              Text('Você está nesse plano',
-                  style: TextStyle(
-                      fontSize: 14.5,
-                      fontWeight: FontWeight.w600,
-                      color: PlanoColors.greenMid)),
+              Text(
+                'Você está nesse plano',
+                style: TextStyle(
+                  fontSize: 14.5,
+                  fontWeight: FontWeight.w600,
+                  color: PlanoColors.greenMid,
+                ),
+              ),
             ],
           ),
         ),
@@ -142,9 +139,10 @@ class PlanDetailScreen extends StatelessWidget {
             appState.leavePlan(plan);
             showToast(context, 'Você saiu do plano.');
           },
-          child: const Text('Sair do plano',
-              style:
-                  TextStyle(fontSize: 13, color: PlanoColors.textSecondary)),
+          child: const Text(
+            'Sair do plano',
+            style: TextStyle(fontSize: 13, color: PlanoColors.textSecondary),
+          ),
         ),
       ],
     );
@@ -170,16 +168,17 @@ class _MemberChip extends StatelessWidget {
           CircleAvatar(
             radius: 12,
             backgroundColor: PlanoColors.greenSoft,
-            child: Text(member.initials,
-                style: const TextStyle(
-                    fontSize: 9,
-                    fontWeight: FontWeight.w700,
-                    color: PlanoColors.greenMid)),
+            child: Text(
+              member.initials,
+              style: const TextStyle(
+                fontSize: 9,
+                fontWeight: FontWeight.w700,
+                color: PlanoColors.greenMid,
+              ),
+            ),
           ),
           const SizedBox(width: 8),
-          Text(member.firstName,
-              style:
-                  const TextStyle(fontSize: 13, fontWeight: FontWeight.w500)),
+          Text(member.firstName, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500)),
         ],
       ),
     );
