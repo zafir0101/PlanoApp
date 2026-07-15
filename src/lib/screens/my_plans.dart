@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui' show FontFeature;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -48,8 +47,8 @@ class MyPlansScreen extends StatelessWidget {
                     others.isEmpty
                         ? 'Seu próximo plano'
                         : 'Seu próximo plano · +${others.length} na agenda',
-                    style: const TextStyle(
-                        fontSize: 13, color: Color(0xFFA8CDB8)),
+                    style:
+                        const TextStyle(fontSize: 13, color: Color(0xFFA8CDB8)),
                   ),
                   const SizedBox(height: 22),
                   Row(
@@ -101,8 +100,7 @@ class MyPlansScreen extends StatelessWidget {
                             formatTime(active.dateTime),
                             light: true),
                         const SizedBox(height: 14),
-                        InfoRow(Icons.place_outlined, 'LOCAL',
-                            active.location,
+                        InfoRow(Icons.place_outlined, 'LOCAL', active.location,
                             light: true),
                         const SizedBox(height: 16),
                         Container(height: 1, color: PlanoColors.white12),
@@ -126,8 +124,7 @@ class MyPlansScreen extends StatelessWidget {
                       Expanded(
                         child: Text(membersLine(active.members),
                             style: const TextStyle(
-                                fontSize: 13,
-                                color: PlanoColors.onGreenDeep)),
+                                fontSize: 13, color: PlanoColors.onGreenDeep)),
                       ),
                     ],
                   ),
@@ -192,8 +189,8 @@ class MyPlansScreen extends StatelessWidget {
         style: FilledButton.styleFrom(
           backgroundColor: Colors.white,
           foregroundColor: PlanoColors.greenDeep,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         ),
         icon: const Icon(Icons.near_me_rounded, size: 20),
         label: const Text('Já estou a caminho',
@@ -267,8 +264,7 @@ class _CountdownClockState extends State<CountdownClock> {
         ),
         const SizedBox(height: 4),
         Text(caption,
-            style:
-                const TextStyle(fontSize: 13, color: Color(0xFFA8CDB8))),
+            style: const TextStyle(fontSize: 13, color: Color(0xFFA8CDB8))),
       ],
     );
   }
@@ -292,8 +288,8 @@ class _EmptyState extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text('Meus Planos',
-                    style: TextStyle(
-                        fontSize: 22, fontWeight: FontWeight.w700)),
+                    style:
+                        TextStyle(fontSize: 22, fontWeight: FontWeight.w700)),
                 Expanded(
                   child: Center(
                     child: Column(
@@ -315,8 +311,7 @@ class _EmptyState extends StatelessWidget {
                         ),
                         const SizedBox(height: 24),
                         FilledButton(
-                          onPressed: () =>
-                              RootShell.of(context).switchTab(0),
+                          onPressed: () => RootShell.of(context).switchTab(0),
                           style: FilledButton.styleFrom(
                             backgroundColor: PlanoColors.green,
                             foregroundColor: Colors.white,
@@ -327,8 +322,7 @@ class _EmptyState extends StatelessWidget {
                           ),
                           child: const Text('Explorar planos',
                               style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600)),
+                                  fontSize: 15, fontWeight: FontWeight.w600)),
                         ),
                       ],
                     ),
@@ -368,9 +362,7 @@ class _MiniPlanTile extends StatelessWidget {
               child: Row(
                 children: [
                   SoftIconBox(plan.icon,
-                      size: 42,
-                      bg: PlanoColors.white12,
-                      fg: Colors.white),
+                      size: 42, bg: PlanoColors.white12, fg: Colors.white),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
@@ -386,8 +378,7 @@ class _MiniPlanTile extends StatelessWidget {
                         const SizedBox(height: 3),
                         Text(formatShort(plan.dateTime),
                             style: const TextStyle(
-                                fontSize: 12.5,
-                                color: Color(0xFFA8CDB8))),
+                                fontSize: 12.5, color: Color(0xFFA8CDB8))),
                       ],
                     ),
                   ),

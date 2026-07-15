@@ -65,8 +65,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           const SizedBox(height: 24),
           const Center(
             child: Text('Plano · versão 0.1.0',
-                style: TextStyle(
-                    fontSize: 12, color: PlanoColors.textSecondary)),
+                style:
+                    TextStyle(fontSize: 12, color: PlanoColors.textSecondary)),
           ),
         ],
       ),
@@ -81,9 +81,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: PlanoColors.border),
       ),
-      child: Row(
+      child: const Row(
         children: [
-          const CircleAvatar(
+          CircleAvatar(
             radius: 26,
             backgroundColor: PlanoColors.greenSoft,
             child: Text('J',
@@ -92,11 +92,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     fontWeight: FontWeight.w700,
                     color: PlanoColors.greenMid)),
           ),
-          const SizedBox(width: 14),
+          SizedBox(width: 14),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text('João',
                     style:
                         TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
@@ -109,8 +109,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ],
             ),
           ),
-          const Icon(Icons.chevron_right_rounded,
-              color: PlanoColors.textSecondary),
+          Icon(Icons.chevron_right_rounded, color: PlanoColors.textSecondary),
         ],
       ),
     );
@@ -121,8 +120,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     for (var i = 0; i < tiles.length; i++) {
       children.add(tiles[i]);
       if (i < tiles.length - 1) {
-        children.add(const Divider(
-            height: 1, indent: 56, color: PlanoColors.border));
+        children.add(
+            const Divider(height: 1, indent: 56, color: PlanoColors.border));
       }
     }
     return Column(
@@ -154,8 +153,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return ListTile(
       leading: Icon(icon, color: PlanoColors.textSecondary, size: 22),
       title: Text(title,
-          style:
-              const TextStyle(fontSize: 14.5, fontWeight: FontWeight.w500)),
+          style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.w500)),
       trailing: const Icon(Icons.chevron_right_rounded,
           size: 20, color: PlanoColors.textSecondary),
       onTap: () {},
@@ -166,8 +164,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return ListTile(
       leading: Icon(icon, color: PlanoColors.textSecondary, size: 22),
       title: Text(title,
-          style:
-              const TextStyle(fontSize: 14.5, fontWeight: FontWeight.w500)),
+          style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.w500)),
       trailing: Switch(
         value: _notifications,
         onChanged: (v) => setState(() => _notifications = v),

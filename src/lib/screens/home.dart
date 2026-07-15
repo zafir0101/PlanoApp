@@ -106,9 +106,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
     if (selected == null || !mounted) return;
-    setState(() => _filter = selected.isEmpty
-        ? null
-        : (_filter == selected ? null : selected));
+    setState(() => _filter =
+        selected.isEmpty ? null : (_filter == selected ? null : selected));
   }
 
   @override
@@ -202,8 +201,8 @@ class _HomeScreenState extends State<HomeScreen> {
         hintText: 'Buscar planos',
         hintStyle:
             const TextStyle(color: PlanoColors.textSecondary, fontSize: 14.5),
-        prefixIcon: const Icon(Icons.search_rounded,
-            color: PlanoColors.textSecondary),
+        prefixIcon:
+            const Icon(Icons.search_rounded, color: PlanoColors.textSecondary),
         filled: true,
         fillColor: PlanoColors.surfaceAlt,
         contentPadding: const EdgeInsets.symmetric(vertical: 14),
@@ -233,8 +232,8 @@ class _HomeScreenState extends State<HomeScreen> {
           style: FilledButton.styleFrom(
             backgroundColor: PlanoColors.green,
             foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
           ),
           icon: const Icon(Icons.add_rounded, size: 24),
           label: const Text('Criar meu próprio plano',
@@ -275,10 +274,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _emptyResults() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 32),
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 32),
       child: Column(
-        children: const [
+        children: [
           Icon(Icons.search_off_rounded,
               size: 40, color: PlanoColors.textSecondary),
           SizedBox(height: 12),
@@ -287,8 +286,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(height: 4),
           Text('Tente outra busca — ou crie o seu próprio plano.',
               textAlign: TextAlign.center,
-              style:
-                  TextStyle(fontSize: 13, color: PlanoColors.textSecondary)),
+              style: TextStyle(fontSize: 13, color: PlanoColors.textSecondary)),
         ],
       ),
     );
@@ -342,9 +340,8 @@ class _CategoryButton extends StatelessWidget {
               style: TextStyle(
                 fontSize: 11.5,
                 fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                color: selected
-                    ? PlanoColors.greenMid
-                    : PlanoColors.textSecondary,
+                color:
+                    selected ? PlanoColors.greenMid : PlanoColors.textSecondary,
               ),
             ),
           ],
@@ -390,9 +387,7 @@ class _TypeChip extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 13.5,
                     fontWeight: FontWeight.w600,
-                    color: selected
-                        ? Colors.white
-                        : PlanoColors.textPrimary)),
+                    color: selected ? Colors.white : PlanoColors.textPrimary)),
           ],
         ),
       ),
