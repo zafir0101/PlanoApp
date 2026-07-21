@@ -47,11 +47,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
             _tile(Icons.info_outline_rounded, 'Sobre o Plano'),
           ]),
           const SizedBox(height: 20),
-          Container(
-            decoration: BoxDecoration(
-              color: PlanoColors.surface,
+          Material(
+            color: PlanoColors.surface,
+            clipBehavior: Clip.antiAlias,
+            shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: PlanoColors.border),
+              side: const BorderSide(color: PlanoColors.border),
             ),
             child: ListTile(
               leading: const Icon(Icons.logout_rounded, color: Color(0xFFB3564A), size: 22),
@@ -131,11 +132,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
         ),
-        Container(
-          decoration: BoxDecoration(
-            color: PlanoColors.surface,
+        Material(
+          color: PlanoColors.surface,
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: PlanoColors.border),
+            side: const BorderSide(color: PlanoColors.border),
           ),
           clipBehavior: Clip.antiAlias,
           child: Column(children: children),
