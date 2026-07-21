@@ -8,6 +8,7 @@ import '../shell.dart';
 import '../state.dart';
 import '../theme.dart';
 import '../widgets.dart';
+import 'create_plan.dart';
 import 'plan_detail.dart';
 
 /// Meus Planos.
@@ -287,16 +288,39 @@ class _EmptyState extends StatelessWidget {
                           style: TextStyle(fontSize: 14, height: 1.5, color: PlanoColors.textSecondary),
                         ),
                         const SizedBox(height: 24),
-                        FilledButton(
-                          onPressed: () => RootShell.of(context).switchTab(0),
-                          style: FilledButton.styleFrom(
-                            backgroundColor: PlanoColors.green,
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 60),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              OutlinedButton(
+                                onPressed: () => RootShell.of(context).switchTab(0),
+                                style: OutlinedButton.styleFrom(
+                                  side: const BorderSide(color: PlanoColors.green, width: 2),
+                                  padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                ),
+                                child: const Text(
+                                  'Explorar planos',
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: PlanoColors.green),
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              FilledButton(
+                                onPressed: () => Navigator.of(context, rootNavigator: true).push(
+                                  MaterialPageRoute(builder: (_) => const CreatePlanScreen()),
+                                ),
+                                style: FilledButton.styleFrom(
+                                  backgroundColor: PlanoColors.green,
+                                  foregroundColor: Colors.white,
+                                  padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                ),
+                                child: const Text('Criar um plano', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                              ),
+                            ],
                           ),
-                          child: const Text('Explorar planos', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
-                        ),
+                        )
                       ],
                     ),
                   ),

@@ -209,7 +209,9 @@ class _HomeScreenState extends State<HomeScreen> {
         height: 60,
         width: double.infinity,
         child: FilledButton.icon(
-          onPressed: () => RootShell.of(context).pushInShell(const CreatePlanScreen()),
+          onPressed: () => Navigator.of(context, rootNavigator: true).push(
+            MaterialPageRoute(builder: (_) => const CreatePlanScreen()),
+          ),
           style: FilledButton.styleFrom(
             backgroundColor: PlanoColors.green,
             foregroundColor: Colors.white,

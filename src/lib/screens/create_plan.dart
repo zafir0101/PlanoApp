@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../models.dart';
-import '../shell.dart';
 import '../state.dart';
 import '../theme.dart';
 import '../widgets.dart';
@@ -67,10 +66,9 @@ class _CreatePlanScreenState extends State<CreatePlanScreen> {
       members: [const Member(AppState.userName)],
       createdByMe: true,
     );
-    final shell = RootShell.of(context);
     appState.createPlan(plan);
+    Navigator.of(context).pop();
     showToast(context, 'Plano criado!');
-    shell.switchTab(1);
   }
 
   @override
