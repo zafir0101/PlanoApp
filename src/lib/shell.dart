@@ -110,9 +110,9 @@ class FloatingNavBar extends StatelessWidget {
             child: Container(
               height: 66,
               decoration: BoxDecoration(
-                color: PlanoColors.navBackground.withAlpha(70),
+                color: PlanoColors.navBackground.withAlpha(170),
                 borderRadius: BorderRadius.circular(28),
-                border: Border.all(color: PlanoColors.navBorder.withAlpha(100)),
+                border: Border.all(color: PlanoColors.navBorder.withAlpha(190)),
               ),
               child: Row(
                 children: [
