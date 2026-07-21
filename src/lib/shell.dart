@@ -106,19 +106,19 @@ class FloatingNavBar extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(28),
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
             child: Container(
               height: 66,
               decoration: BoxDecoration(
-                color: PlanoColors.navBackground,
+                color: PlanoColors.navBackground.withAlpha(70),
                 borderRadius: BorderRadius.circular(28),
-                border: Border.all(color: PlanoColors.navBorder),
+                border: Border.all(color: PlanoColors.navBorder.withAlpha(100)),
               ),
               child: Row(
                 children: [
-                  _item(0, Icons.home_outlined, Icons.home_rounded, 'Home'),
-                  _item(1, Icons.event_note_outlined, Icons.event_note_rounded, 'Meus Planos'),
-                  _item(2, Icons.card_giftcard_outlined, Icons.card_giftcard_rounded, 'Benefícios'),
+                  _item(0, Icons.home_outlined, Icons.home_rounded, 'Home', context),
+                  _item(1, Icons.event_note_outlined, Icons.event_note_rounded, 'Meus Planos', context),
+                  _item(2, Icons.card_giftcard_outlined, Icons.card_giftcard_rounded, 'Benefícios', context),
                 ],
               ),
             ),
@@ -128,36 +128,35 @@ class FloatingNavBar extends StatelessWidget {
     );
   }
 
-  Widget _item(int i, IconData icon, IconData activeIcon, String label) {
+  Widget _item(int i, IconData icon, IconData activeIcon, String label, BuildContext context) {
     final selected = index == i;
     final color = selected ? PlanoColors.greenMid : PlanoColors.textSecondary;
     return Expanded(
-      child: InkWell(
-        borderRadius: BorderRadius.circular(24),
-        onTap: () => onTap(i),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.easeOut,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              decoration: BoxDecoration(
-                color: selected ? PlanoColors.greenSoft : Colors.transparent,
-                borderRadius: BorderRadius.circular(100),
+      child: GestureDetector(
+        onTap: Feedback.wrapForTap(() => onTap(i), context),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          decoration: BoxDecoration(
+            color: selected ? PlanoColors.green.withAlpha(50) : PlanoColors.greenSoft.withAlpha(0),
+            borderRadius: BorderRadius.circular(100),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(selected ? activeIcon : icon, size: 22, color: color),
+              const SizedBox(height: 3),
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                  color: color,
+                ),
               ),
-              child: Icon(selected ? activeIcon : icon, size: 22, color: color),
-            ),
-            const SizedBox(height: 3),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 11,
-                fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                color: color,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
