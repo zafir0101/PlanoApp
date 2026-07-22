@@ -1,3 +1,8 @@
+/// Define a identidade visual e o tema global do aplicativo.
+///
+/// Este arquivo concentra as cores da marca e a configuração do [ThemeData],
+/// garantindo consistência visual em todo o aplicativo através do Material 3.
+
 import 'package:flutter/material.dart';
 
 /// Paleta do Plano — minimalismo: branco e cinza como base,
@@ -16,10 +21,10 @@ class PlanoColors {
   static const textSecondary = Color(0xFF8B928A);
 
   // Verdes
-  static const green = Color(0xFF5FAE7F); // acento principal (claro)
-  static const greenMid = Color(0xFF4C9C6D); // ícones e destaques
-  static const greenSoft = Color(0xFFE8F3EC); // preenchimentos suaves
-  static const greenDeep = Color(0xFF275E43); // tela de plano ativo
+  static const green = Color(0xFF5FAE7F);       // acento principal (claro)
+  static const greenMid = Color(0xFF4C9C6D);    // ícones e destaques
+  static const greenSoft = Color(0xFFE8F3EC);   // preenchimentos suaves
+  static const greenDeep = Color(0xFF275E43);   // tela de plano ativo
   static const greenDeeper = Color(0xFF1F4E37);
   static const onGreenDeep = Color(0xFFDFF0E6); // texto sobre verde profundo
 
@@ -32,22 +37,30 @@ class PlanoColors {
   static const shadow = Color(0x14000000);
 
   // Barra de navegação suspensa
-  static const navBackground = Color(0xBFFFFFFF); // ~75% branco
+  static const navBackground = Color(0xBFFFFFFF); 
   static const navBorder = Color(0xA6FFFFFF);
+
+  // SnackBar
+  static const snackBarBackground = Color(0xE620261F);
 }
 
+/// Constrói e retorna o tema global do aplicativo.
+///
+/// Utiliza o Material 3 como base, gerando um [ColorScheme] a partir do 
+/// verde principal da paleta.
 ThemeData buildPlanoTheme() {
   final base = ThemeData(
     useMaterial3: true,
     colorScheme: ColorScheme.fromSeed(seedColor: PlanoColors.green)
-        .copyWith(surface: PlanoColors.background),
+       .copyWith(surface: PlanoColors.background),
     scaffoldBackgroundColor: PlanoColors.background,
   );
+ 
   return base.copyWith(
     textTheme: base.textTheme.apply(
       bodyColor: PlanoColors.textPrimary,
-      displayColor: PlanoColors.textPrimary,
-    ),
+      displayColor: PlanoColors.textPrimary, 
+    ),  
     appBarTheme: const AppBarTheme(
       backgroundColor: PlanoColors.background,
       elevation: 0,
@@ -56,7 +69,7 @@ ThemeData buildPlanoTheme() {
     ),
     snackBarTheme: const SnackBarThemeData(
       behavior: SnackBarBehavior.floating,
-      backgroundColor: Color(0xE620261F),
+      backgroundColor: PlanoColors.snackBarBackground,
       contentTextStyle: TextStyle(color: Colors.white, fontSize: 13.5),
     ),
   );
