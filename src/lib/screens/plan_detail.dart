@@ -5,6 +5,7 @@ import '../shell.dart';
 import '../state.dart';
 import '../theme.dart';
 import '../widgets.dart';
+import '../widgets/confirm_dialog.dart';
 
 /// Detalhe do plano: tipo, data e hora, localização, descrição,
 /// membros participando e botão para entrar.
@@ -136,8 +137,16 @@ class PlanDetailScreen extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            appState.leavePlan(plan);
-            showToast(context, 'Você saiu do plano.');
+            showConfirmDialog(
+              context,
+              promptText: "Deseja realmente sair do plano?",
+              description: "Os outros participantes irão sentir a sua falta.",
+              confirmText: "Sair do plano",
+              onConfirm: () {
+                appState.leavePlan(plan);
+                showToast(context, 'Você saiu do plano.');
+              },
+            );
           },
           child: const Text(
             'Sair do plano',

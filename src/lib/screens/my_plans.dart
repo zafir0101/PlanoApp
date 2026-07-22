@@ -8,6 +8,7 @@ import '../shell.dart';
 import '../state.dart';
 import '../theme.dart';
 import '../widgets.dart';
+import '../widgets/confirm_dialog.dart';
 import 'create_plan.dart';
 import 'plan_detail.dart';
 
@@ -129,8 +130,16 @@ class MyPlansScreen extends StatelessWidget {
                   Center(
                     child: TextButton(
                       onPressed: () {
-                        appState.leavePlan(active);
-                        showToast(context, 'Você saiu do plano.');
+                        showConfirmDialog(
+                          context,
+                          promptText: "Deseja realmente sair do plano?",
+                          description: "Os outros participantes irão sentir a sua falta.",
+                          confirmText: "Sair do plano",
+                          onConfirm: () {
+                            appState.leavePlan(active);
+                            showToast(context, 'Você saiu do plano.');
+                          },
+                        );
                       },
                       child: const Text('Sair do plano', style: TextStyle(fontSize: 13, color: PlanoColors.white70)),
                     ),
