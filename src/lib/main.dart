@@ -3,6 +3,7 @@
 /// Este arquivo é responsável por inicializar o Flutter e configurar 
 /// as propriedades globais do aplicativo, como o tema base e a 
 /// o Shell.
+library;
 
 import 'package:flutter/material.dart';
 import 'shell.dart';

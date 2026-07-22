@@ -2,6 +2,7 @@
 ///
 /// Este arquivo concentra as cores da marca e a configuração do [ThemeData],
 /// garantindo consistência visual em todo o aplicativo através do Material 3.
+library;
 
 import 'package:flutter/material.dart';
 
@@ -37,11 +38,11 @@ class PlanoColors {
   static const shadow = Color(0x14000000);
 
   // Barra de navegação suspensa
-  static const navBackground = Color(0xBFFFFFFF); 
-  static const navBorder = Color(0xA6FFFFFF);
+  static const navBackground = Color(0xAAFFFFFF); 
+  static const navBorder = Color(0xBEFFFFFF);
 
   // SnackBar
-  static const snackBarBackground = Color(0xE620261F);
+  static const snackBarBackground = Color(0xAAFFFFFF);
 }
 
 /// Constrói e retorna o tema global do aplicativo.
@@ -70,7 +71,7 @@ ThemeData buildPlanoTheme() {
     snackBarTheme: const SnackBarThemeData(
       behavior: SnackBarBehavior.floating,
       backgroundColor: PlanoColors.snackBarBackground,
-      contentTextStyle: TextStyle(color: Colors.white, fontSize: 13.5),
+      contentTextStyle: TextStyle(color: PlanoColors.textPrimary, fontSize: 13.5),
     ),
   );
 }

@@ -1,3 +1,10 @@
+/// Estrutura principal de navegação do aplicativo Plano.
+///
+/// Este arquivo implementa um contêiner (Shell) que gerencia um [Navigator]
+/// aninhado. Isso permite que a barra de navegação inferior permaneça visível
+/// mesmo quando novas telas são abertas dentro das abas.
+library;
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -15,6 +22,10 @@ import 'theme.dart';
 class RootShell extends StatefulWidget {
   const RootShell({super.key});
 
+  /// Acessa o estado do [RootShell] a partir de qualquer widget descendente.
+  /// 
+  /// Útil para forçar a troca de abas ou empurrar telas via [pushInShell]
+  /// de dentro das páginas do aplicativo, resolvendo o problema de prop drilling.
   static RootShellState of(BuildContext context) => context.findAncestorStateOfType<RootShellState>()!;
 
   @override
@@ -25,13 +36,16 @@ class RootShellState extends State<RootShell> {
   final _tab = ValueNotifier<int>(0);
   final _nestedNav = GlobalKey<NavigatorState>();
 
-  /// Troca de aba (fecha telas empurradas dentro do shell).
+  /// Altera a aba ativa e reseta a pilha de navegação interna.
+  ///
+  /// Ao clicar em uma aba, qualquer tela que tenha sido empurrada dentro 
+  /// do shell atual será fechada, retornando à raiz da aba selecionada.
   void switchTab(int index) {
     _nestedNav.currentState?.popUntil((r) => r.isFirst);
     _tab.value = index;
   }
 
-  /// Empurra uma tela DENTRO do shell (barra continua visível).
+  /// Empurra uma nova tela mantendo a barra de navegação inferior visível.
   Future<T?> pushInShell<T>(Widget screen) {
     return _nestedNav.currentState!.push<T>(
       MaterialPageRoute(builder: (_) => screen),
@@ -47,12 +61,14 @@ class RootShellState extends State<RootShell> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (didPop, _) {
+      // evita que o aplicativo encerre com back gestures do sistema
+      canPop: false,                          
+      onPopInvokedWithResult: (didPop, _) {  
         if (didPop) return;
         final nav = _nestedNav.currentState;
         if (nav != null && nav.canPop()) nav.pop();
       },
+
       child: Scaffold(
         backgroundColor: PlanoColors.background,
         extendBody: true, // conteúdo passa por trás da barra translúcida
@@ -81,10 +97,15 @@ class RootShellState extends State<RootShell> {
   }
 }
 
-/// Barra de navegação "suspensa": bordas arredondadas + leve transparência.
+/// Uma barra de navegação flutuante com visual Glassmorphism.
+/// 
+/// 
 class FloatingNavBar extends StatelessWidget {
+  /// O índice da aba atualmente selecionada.
   final int index;
+  /// Callback disparado quando uma aba é tocada.
   final ValueChanged<int> onTap;
+
   const FloatingNavBar({super.key, required this.index, required this.onTap});
 
   @override
@@ -110,9 +131,9 @@ class FloatingNavBar extends StatelessWidget {
             child: Container(
               height: 66,
               decoration: BoxDecoration(
-                color: PlanoColors.navBackground.withAlpha(170),
+                color: PlanoColors.navBackground,
                 borderRadius: BorderRadius.circular(28),
-                border: Border.all(color: PlanoColors.navBorder.withAlpha(190)),
+                border: Border.all(color: PlanoColors.navBorder),
               ),
               child: Row(
                 children: [
@@ -128,6 +149,7 @@ class FloatingNavBar extends StatelessWidget {
     );
   }
 
+  /// Constrói um item individual (botão) da barra de navegação.
   Widget _item(int i, IconData icon, IconData activeIcon, String label, BuildContext context) {
     final selected = index == i;
     final color = selected ? PlanoColors.greenMid : PlanoColors.textSecondary;
