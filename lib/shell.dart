@@ -45,6 +45,7 @@ class RootShellState extends State<RootShell> {
     _tab.value = index;
   }
 
+// parei aqui
   /// Empurra uma nova tela mantendo a barra de navegação inferior visível.
   Future<T?> pushInShell<T>(Widget screen) {
     return _nestedNav.currentState!.push<T>(
@@ -90,7 +91,7 @@ class RootShellState extends State<RootShell> {
         ),
         bottomNavigationBar: ValueListenableBuilder<int>(
           valueListenable: _tab,
-          builder: (_, index, __) => FloatingNavBar(index: index, onTap: switchTab),
+          builder: (_, index, __) => FloatingNavBar(selectedTab: index, onTap: switchTab),
         ),
       ),
     );
@@ -101,12 +102,11 @@ class RootShellState extends State<RootShell> {
 /// 
 /// 
 class FloatingNavBar extends StatelessWidget {
-  /// O índice da aba atualmente selecionada.
-  final int index;
+  final int selectedTab;
   /// Callback disparado quando uma aba é tocada.
   final ValueChanged<int> onTap;
 
-  const FloatingNavBar({super.key, required this.index, required this.onTap});
+  const FloatingNavBar({super.key, required this.selectedTab, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +151,7 @@ class FloatingNavBar extends StatelessWidget {
 
   /// Constrói um item individual (botão) da barra de navegação.
   Widget _item(int i, IconData icon, IconData activeIcon, String label, BuildContext context) {
-    final selected = index == i;
+    final selected = selectedTab == i;
     final color = selected ? PlanoColors.greenMid : PlanoColors.textSecondary;
     return Expanded(
       child: GestureDetector(
