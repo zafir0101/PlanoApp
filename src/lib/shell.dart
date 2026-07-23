@@ -71,7 +71,7 @@ class RootShellState extends State<RootShell> {
 
       child: Scaffold(
         backgroundColor: PlanoColors.background,
-        extendBody: true, // conteúdo passa por trás da barra translúcida
+        extendBody: true, 
         body: Navigator(
           key: _nestedNav,
           onGenerateRoute: (settings) => MaterialPageRoute(

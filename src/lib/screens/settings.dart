@@ -158,6 +158,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return ListTile(
       leading: Icon(icon, color: PlanoColors.textSecondary, size: 22),
       title: Text(title, style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.w500)),
+      onTap: () => setState(() => _notifications = !_notifications), 
       trailing: Switch(
         value: _notifications,
         onChanged: (v) => setState(() => _notifications = v),
