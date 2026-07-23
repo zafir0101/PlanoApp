@@ -77,32 +77,17 @@ class CategoryPill extends StatelessWidget {
   }
 }
 
-/// Avatares sobrepostos com iniciais.
+/// Avatares sobrepostos com fotos ou iniciais.
 class MemberAvatars extends StatelessWidget {
   final List<Member> members;
   final int max;
   final double size;
-  final bool light; // versão para fundo verde profundo
   const MemberAvatars(
     this.members, {
     super.key,
     this.max = 3,
     this.size = 28,
-    this.light = false,
   });
-
-  static const _bgs = [
-    Color(0xFFDCEEE2),
-    Color(0xFFEAE6DA),
-    Color(0xFFE3E8F0),
-    Color(0xFFF0E3E3),
-  ];
-  static const _fgs = [
-    Color(0xFF4C9C6D),
-    Color(0xFF8A7B4F),
-    Color(0xFF5C6E8A),
-    Color(0xFF9C5F5F),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -112,27 +97,17 @@ class MemberAvatars extends StatelessWidget {
     if (slots == 0) return const SizedBox.shrink();
     final step = size * 0.66;
 
-    Widget circle(String text, int i) {
+    Widget circle(Widget child) {
       return Container(
         width: size,
         height: size,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: light ? PlanoColors.white15 : _bgs[i % _bgs.length],
+          color: PlanoColors.baseProfilePicture,
+          border: Border.all(width: 2, color: Colors.white),
           shape: BoxShape.circle,
-          border: Border.all(
-            color: light ? PlanoColors.greenDeep : Colors.white,
-            width: 2,
-          ),
         ),
-        child: Text(
-          text,
-          style: TextStyle(
-            fontSize: size * 0.34,
-            fontWeight: FontWeight.w700,
-            color: light ? Colors.white : _fgs[i % _fgs.length],
-          ),
-        ),
+        child: child,
       );
     }
 
@@ -141,8 +116,15 @@ class MemberAvatars extends StatelessWidget {
       height: size,
       child: Stack(
         children: [
-          for (var i = 0; i < show.length; i++) Positioned(left: i * step, child: circle(show[i].initials, i)),
-          if (extra > 0) Positioned(left: show.length * step, child: circle('+$extra', 3)),
+          for (var i = 0; i < show.length; i++) Positioned(left: i * step, child: circle(show[i].profilePicture(size))),
+          if (extra > 0)
+            Positioned(
+              left: show.length * step,
+              child: circle(Text(
+                '+$extra',
+                style: TextStyle(fontSize: size * 0.34, fontWeight: FontWeight.w700, color: PlanoColors.greenMid),
+              )),
+            ),
         ],
       ),
     );

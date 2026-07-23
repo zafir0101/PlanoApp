@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:plano_app/widgets/member_chip.dart';
 
 import '../models.dart';
 import '../shell.dart';
@@ -114,16 +115,19 @@ class MyPlansScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 22),
-                  const SectionTitle('Quem vai', color: Colors.white),
+                  SectionTitle(
+                    'Participantes · ${active.members.length}',
+                    color: Colors.white,
+                  ),
                   const SizedBox(height: 12),
-                  Row(
+                  Wrap(
+                    spacing: 8,
                     children: [
-                      MemberAvatars(active.members, max: 4, size: 32, light: true),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(membersLine(active.members),
-                            style: const TextStyle(fontSize: 13, color: PlanoColors.onGreenDeep)),
-                      ),
+                      for (final member in active.members)
+                        MemberChip(
+                          member,
+                          translucent: true,
+                        ),
                     ],
                   ),
                   const SizedBox(height: 10),
