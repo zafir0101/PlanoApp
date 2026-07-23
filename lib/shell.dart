@@ -75,7 +75,7 @@ class RootShellState extends State<RootShell> {
         extendBody: true, 
         body: Navigator(
           key: _nestedNav,
-          onGenerateRoute: (settings) => MaterialPageRoute(
+          onGenerateRoute: (_) => MaterialPageRoute(
             builder: (_) => ValueListenableBuilder<int>(
               valueListenable: _tab,
               builder: (_, index, __) => IndexedStack(
