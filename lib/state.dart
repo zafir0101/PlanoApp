@@ -35,7 +35,7 @@ class AppState extends ChangeNotifier {
   void joinPlan(Plan plan) {
     if (isJoined(plan)) return;
     if (!plan.members.any((m) => m.name == user.name)) {
-      plan.members.add(Member(user.name));
+      plan.members.add(user);
     }
     myPlans
       ..add(plan)
