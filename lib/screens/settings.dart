@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plano_app/state.dart';
 
 import '../theme.dart';
 
@@ -80,30 +81,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: PlanoColors.border),
       ),
-      child: const Row(
+      child: Row(
         children: [
-          CircleAvatar(
-            radius: 26,
-            backgroundColor: PlanoColors.greenSoft,
-            child: Text('J', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: PlanoColors.greenMid)),
-          ),
-          SizedBox(width: 14),
+          AppState.user.profilePicture(52),
+          const SizedBox(width: 14),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('João', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
-                SizedBox(height: 2),
+                Text(AppState.user.name, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+                const SizedBox(height: 2),
                 Text(
-                  'jppschmall02@outlook.com',
+                  AppState.user.email,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 12.5, color: PlanoColors.textSecondary),
+                  style: const TextStyle(fontSize: 12.5, color: PlanoColors.textSecondary),
                 ),
               ],
             ),
           ),
-          Icon(Icons.chevron_right_rounded, color: PlanoColors.textSecondary),
+          const Icon(Icons.chevron_right_rounded, color: PlanoColors.textSecondary),
         ],
       ),
     );
@@ -158,7 +155,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return ListTile(
       leading: Icon(icon, color: PlanoColors.textSecondary, size: 22),
       title: Text(title, style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.w500)),
-      onTap: () => setState(() => _notifications = !_notifications), 
+      onTap: () => setState(() => _notifications = !_notifications),
       trailing: Switch(
         value: _notifications,
         onChanged: (v) => setState(() => _notifications = v),

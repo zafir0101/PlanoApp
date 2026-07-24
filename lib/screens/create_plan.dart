@@ -63,7 +63,7 @@ class _CreatePlanScreenState extends State<CreatePlanScreen> {
       dateTime: DateTime(_date!.year, _date!.month, _date!.day, _time!.hour, _time!.minute),
       location: _location.text.trim(),
       description: _description.text.trim().isEmpty ? 'Plano criado por você. Convide quem quiser!' : _description.text.trim(),
-      members: [const Member(AppState.userName)],
+      members: [Member(AppState.user.name)],
       createdByMe: true,
     );
     appState.createPlan(plan);

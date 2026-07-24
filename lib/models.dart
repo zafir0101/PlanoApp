@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:plano_app/theme.dart';
 
 // ============================== Modelos ==============================
+typedef Url = String; // TODO: Talvez usar a classe Uri no lugar
 
 class Member {
   final String name;
-  const Member(this.name);
+  late Color color;
+  final Url? photo;
+  final Url? banner;
+
+  Member(this.name, {this.photo, this.banner}) {
+    // A variação de cor é calculada a partir das iniciais
+    final int colorVariation = initials.runes.reduce((acc, elem) => acc + elem);
+    color = PlanoColors.baseProfilePicture.withGreen(215 + (colorVariation * 3) % 60 - 30);
+  }
 
   String get firstName => name.split(' ').first;
 
@@ -12,6 +22,23 @@ class Member {
     final parts = name.trim().split(RegExp(r'\s+'));
     if (parts.length == 1) return parts.first[0].toUpperCase();
     return (parts.first[0] + parts.last[0]).toUpperCase();
+  }
+
+  Widget profilePicture(double size) {
+    final pfp = photo;
+    return CircleAvatar(
+      radius: size / 2,
+      foregroundImage: pfp != null ? NetworkImage(pfp) : null,
+      backgroundColor: color,
+      child: Text(
+        initials,
+        style: TextStyle(
+          fontSize: size * 0.34,
+          fontWeight: FontWeight.w700,
+          color: color.withValues(red: color.r * 0.6, blue: color.b * 0.6, green: color.g * 0.6),
+        ),
+      ),
+    );
   }
 }
 
@@ -160,10 +187,10 @@ List<Plan> buildMockPlans() {
       description: 'Subida tranquila de 3 km para ver o nascer do sol lá de cima. '
           'Ritmo leve, café compartilhado no topo. Leve água e um agasalho.',
       members: [
-        const Member('Ana Souza'),
-        const Member('Pedro Lima'),
-        const Member('Marina Reis'),
-        const Member('Caio Duarte'),
+        Member('Ana Souza'),
+        Member('Pedro Lima'),
+        Member('Jair Messias', photo: "https://www.camara.leg.br/internet/deputado/bandep/74847.jpgmaior.jpg"),
+        Member('Caio Duarte'),
       ],
     ),
     Plan(
@@ -176,9 +203,10 @@ List<Plan> buildMockPlans() {
       description: 'Um fim de tarde sem pressa: cafés especiais, boas conversas '
           'e zero celular na mesa.',
       members: [
-        const Member('Júlia Antunes'),
-        const Member('Rafael Costa'),
-        const Member('Bianca Melo'),
+        Member('Jair Messias', photo: "https://www.camara.leg.br/internet/deputado/bandep/74847.jpgmaior.jpg"),
+        Member('Júlia Antunes'),
+        Member('Rafael Costa'),
+        Member('Bianca Melo'),
       ],
     ),
     Plan(
@@ -191,11 +219,12 @@ List<Plan> buildMockPlans() {
       description: 'Jogo leve pra quem quer se mexer e conhecer gente nova. '
           'Todos os níveis são bem-vindos.',
       members: [
-        const Member('Thiago Nunes'),
-        const Member('Larissa Prado'),
-        const Member('Felipe Ramos'),
-        const Member('Camila Ohara'),
-        const Member('Bruno Sales'),
+        Member('Thiago Nunes'),
+        Member('Larissa Prado'),
+        Member('Felipe Ramos'),
+        Member('Jair Messias', photo: "https://www.camara.leg.br/internet/deputado/bandep/74847.jpgmaior.jpg"),
+        Member('Camila Ohara'),
+        Member('Bruno Sales'),
       ],
     ),
     Plan(
@@ -208,9 +237,10 @@ List<Plan> buildMockPlans() {
       description: 'Catan, Dixit e o que mais aparecer. Ambiente descontraído, '
           'entrada livre.',
       members: [
-        const Member('Nina Torres'),
-        const Member('Diego Farias'),
-        const Member('Alice Bittencourt'),
+        Member('Jair Messias', photo: "https://www.camara.leg.br/internet/deputado/bandep/74847.jpgmaior.jpg"),
+        Member('Nina Torres'),
+        Member('Diego Farias'),
+        Member('Alice Bittencourt'),
       ],
     ),
     Plan(
@@ -223,10 +253,11 @@ List<Plan> buildMockPlans() {
       description: 'Cada um leva algo pra compartilhar. Música baixa, jogos de '
           'gramado e boa companhia.',
       members: [
-        const Member('Sofia Lemos'),
-        const Member('Gabriel Pontes'),
-        const Member('Helena Dias'),
-        const Member('Otávio Brito'),
+        Member('Sofia Lemos'),
+        Member('Gabriel Pontes'),
+        Member('Helena Dias'),
+        Member('Jair Messias', photo: "https://www.camara.leg.br/internet/deputado/bandep/74847.jpgmaior.jpg"),
+        Member('Otávio Brito'),
       ],
     ),
   ];

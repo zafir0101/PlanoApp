@@ -22,10 +22,10 @@ class PlanoColors {
   static const textSecondary = Color(0xFF8B928A);
 
   // Verdes
-  static const green = Color(0xFF5FAE7F);       // acento principal (claro)
-  static const greenMid = Color(0xFF4C9C6D);    // ícones e destaques
-  static const greenSoft = Color(0xFFE8F3EC);   // preenchimentos suaves
-  static const greenDeep = Color(0xFF275E43);   // tela de plano ativo
+  static const green = Color(0xFF5FAE7F); // acento principal (claro)
+  static const greenMid = Color(0xFF4C9C6D); // ícones e destaques
+  static const greenSoft = Color(0xFFE8F3EC); // preenchimentos suaves
+  static const greenDeep = Color(0xFF275E43); // tela de plano ativo
   static const greenDeeper = Color(0xFF1F4E37);
   static const onGreenDeep = Color(0xFFDFF0E6); // texto sobre verde profundo
 
@@ -38,30 +38,32 @@ class PlanoColors {
   static const shadow = Color(0x14000000);
 
   // Barra de navegação suspensa
-  static const navBackground = Color(0xAAFFFFFF); 
+  static const navBackground = Color(0xAAFFFFFF);
   static const navBorder = Color(0xBEFFFFFF);
 
   // SnackBar
   static const snackBarBackground = Color(0xAAFFFFFF);
+
+  // Cor base dos perfis, variação é calculada a partir das iniciais.
+  static const baseProfilePicture = Color(0xFF9DF5C4);
 }
 
 /// Constrói e retorna o tema global do aplicativo.
 ///
-/// Utiliza o Material 3 como base, gerando um [ColorScheme] a partir do 
+/// Utiliza o Material 3 como base, gerando um [ColorScheme] a partir do
 /// verde principal da paleta.
 ThemeData buildPlanoTheme() {
   final base = ThemeData(
     useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(seedColor: PlanoColors.green)
-       .copyWith(surface: PlanoColors.background),
+    colorScheme: ColorScheme.fromSeed(seedColor: PlanoColors.green).copyWith(surface: PlanoColors.background),
     scaffoldBackgroundColor: PlanoColors.background,
   );
- 
+
   return base.copyWith(
     textTheme: base.textTheme.apply(
       bodyColor: PlanoColors.textPrimary,
-      displayColor: PlanoColors.textPrimary, 
-    ),  
+      displayColor: PlanoColors.textPrimary,
+    ),
     appBarTheme: const AppBarTheme(
       backgroundColor: PlanoColors.background,
       elevation: 0,

@@ -151,22 +151,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _header(BuildContext context) {
     return Row(
       children: [
+        AppState.user.profilePicture(48),
         // Foto do usuário (iniciais como placeholder)
-        const CircleAvatar(
-          radius: 20,
-          backgroundColor: PlanoColors.greenSoft,
-          child: Text('J', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: PlanoColors.greenMid)),
-        ),
         const SizedBox(width: 12),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(_greeting(), style: const TextStyle(fontSize: 13, color: PlanoColors.textSecondary)),
-            const Text(AppState.userName, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700)),
+            Text(AppState.user.firstName, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w700)),
           ],
         ),
         const Spacer(),
-        // Ajustes — canto superior direito (abre SEM a barra de navegação)
         IconButton(
           onPressed: () => Navigator.of(context, rootNavigator: true).push(
             MaterialPageRoute(builder: (_) => const SettingsScreen()),

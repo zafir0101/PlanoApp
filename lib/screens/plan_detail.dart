@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plano_app/widgets/member_chip.dart';
 
 import '../models.dart';
 import '../shell.dart';
@@ -65,9 +66,8 @@ class PlanDetailScreen extends StatelessWidget {
                 const SizedBox(height: 12),
                 Wrap(
                   spacing: 8,
-                  runSpacing: 8,
                   children: [
-                    for (final m in plan.members) _MemberChip(m),
+                    for (final m in plan.members) MemberChip(m),
                   ],
                 ),
                 const SizedBox(height: 26),
@@ -154,42 +154,6 @@ class PlanDetailScreen extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _MemberChip extends StatelessWidget {
-  final Member member;
-  const _MemberChip(this.member);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(6, 6, 12, 6),
-      decoration: BoxDecoration(
-        color: PlanoColors.surface,
-        borderRadius: BorderRadius.circular(100),
-        border: Border.all(color: PlanoColors.border),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CircleAvatar(
-            radius: 12,
-            backgroundColor: PlanoColors.greenSoft,
-            child: Text(
-              member.initials,
-              style: const TextStyle(
-                fontSize: 9,
-                fontWeight: FontWeight.w700,
-                color: PlanoColors.greenMid,
-              ),
-            ),
-          ),
-          const SizedBox(width: 8),
-          Text(member.firstName, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500)),
-        ],
-      ),
     );
   }
 }
