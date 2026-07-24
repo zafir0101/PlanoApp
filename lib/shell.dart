@@ -45,7 +45,6 @@ class RootShellState extends State<RootShell> {
     _tab.value = index;
   }
 
-// parei aqui
   /// Empurra uma nova tela mantendo a barra de navegação inferior visível.
   Future<T?> pushInShell<T>(Widget screen) {
     return _nestedNav.currentState!.push<T>(
@@ -89,24 +88,22 @@ class RootShellState extends State<RootShell> {
             ),
           ),
         ),
+        // parei aqui
         bottomNavigationBar: ValueListenableBuilder<int>(
           valueListenable: _tab,
-          builder: (_, index, __) => FloatingNavBar(selectedTab: index, onTap: switchTab),
+          builder: (_, index, __) => FloatingNavBar(selectedTab: index, handleTap: switchTab),
         ),
       ),
     );
   }
 }
 
-/// Uma barra de navegação flutuante com visual Glassmorphism.
-/// 
-/// 
+/// A barra de navegação flutuante com visual Glassmorphism.
 class FloatingNavBar extends StatelessWidget {
   final int selectedTab;
-  /// Callback disparado quando uma aba é tocada.
-  final ValueChanged<int> onTap;
+  final ValueChanged<int> handleTap;
 
-  const FloatingNavBar({super.key, required this.selectedTab, required this.onTap});
+  const FloatingNavBar({super.key, required this.selectedTab, required this.handleTap});
 
   @override
   Widget build(BuildContext context) {
@@ -145,17 +142,17 @@ class FloatingNavBar extends StatelessWidget {
             ),
           ),
         ),
-      ),
+       ),
     );
   }
 
   /// Constrói um item individual (botão) da barra de navegação.
   Widget _item(int i, IconData icon, IconData activeIcon, String label, BuildContext context) {
-    final selected = selectedTab == i;
+    final selected = (selectedTab == i);
     final color = selected ? PlanoColors.greenMid : PlanoColors.textSecondary;
-    return Expanded(
+    return  Expanded(
       child: GestureDetector(
-        onTap: Feedback.wrapForTap(() => onTap(i), context),
+        onTap: Feedback.wrapForTap(() => handleTap(i), context),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
